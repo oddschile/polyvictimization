@@ -1,0 +1,36 @@
+pdv <- read.csv("C:/Users/ocariceo/Desktop/pdv.csv")
+str(pdv)
+head(pdv)
+
+table(pdv$PH_10)
+
+table(pdv$sexo, pdv$edad)
+
+table(pdv$sexo, pdv$curso)
+
+
+modelo <- glm(PH_10 ~ ., data = pdv, family ="binomial")
+summary(modelo)
+
+library(questionr)
+
+odds.ratio(modelo2)
+
+modelo2 <- glm(PH_10 ~ curso + sexo + edad + PA_4 + PA_7 + PB_1 + PB_2 + PC_1 + PC_2 + PC_3 + PD_2 + PD_6 + PD_7 + PF_1 + PF_2 + dep, data = pdv, family ="binomial")
+summary(modelo2)
+
+odds.ratio(modelo2)
+
+require(rms)
+
+
+mod1b <- lrm(modelo2)
+library(DescTools)
+PseudoR2(modelo2)
+
+PseudoR2(r.glm, c("McFadden", "Nagel"))
+
+
+library(epiDisplay)
+
+logistic.display(modelo2)
